@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Zipbomb</title>
+    </head>
+    <body>
+        <form action="/zipbomb">
+            <label>Zip name: <input type="text" name="name" value="output.zip" required/></label>
+            <label>File number: <input type="number" name="file_num" value="1000" required/></label>
+            <label>File size: <input type="number" name="size" value="1000" oninput="check(this)" required/></label>
+            <button type="submit">Download</button>
+        </form>
+        <script>
+            check = input => input.setCustomValidity(input.value < 150 ? 'Must be not less than 150' : '');
+        </script>
+    </body>
+</html>

