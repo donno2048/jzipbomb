@@ -3,17 +3,39 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.bootcss.com/react/15.4.1/react.js"></script>
+        <script src="https://cdn.bootcss.com/react/15.4.1/react-dom.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/rsuite/3.2.9/rsuite.min.js"></script>
+        <script src="https://cdn.bootcss.com/babel-core/5.8.38/browser.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/rsuite@3.2.9/dist/styles/rsuite.min.css" rel="stylesheet">
         <title>Zipbomb</title>
     </head>
     <body>
-        <form action="/zipbomb">
-            <label>Zip name: <input type="text" name="name" value="output.zip" required/></label>
-            <label>File number: <input type="number" name="file_num" value="1000" required/></label>
-            <label>File size: <input type="number" name="size" value="1000" oninput="check(this)" required/></label>
-            <button type="submit">Download</button>
-        </form>
-        <script>
-            check = input => input.setCustomValidity(input.value < 150 ? 'Must be not less than 150' : '');
+        <script type="text/babel">
+            const { Form, FormGroup, FormControl, Button, ControlLabel, HelpBlock } = rsuite;
+            ReactDOM.render(
+                <Form action="/zipbomb">
+                    <FormGroup>
+                        <ControlLabel>Zip name: </ControlLabel>
+                        <FormControl name="name"/>
+                        <HelpBlock tooltip>Default: output.zip</HelpBlock>
+                    </FormGroup>
+                    <FormGroup>
+                        <ControlLabel>File number: </ControlLabel>
+                        <FormControl type="number" name="file_num"/>
+                        <HelpBlock tooltip>Default: 1000</HelpBlock>
+                    </FormGroup>
+                    <FormGroup>
+                        <ControlLabel>File size: </ControlLabel>
+                        <FormControl type="number" name="size" min="150"/>
+                        <HelpBlock tooltip>Default: 1000</HelpBlock>
+                    </FormGroup>
+                    <FormGroup>
+                        <Button appearance="primary" onClick={() => document.getElementsByTagName("form")[0].submit()}>Download</Button>
+                    </FormGroup>
+                </Form>
+            , document.getElementsByTagName("div")[0]);
         </script>
+        <div align="center"></div>
     </body>
 </html>
