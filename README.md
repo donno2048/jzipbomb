@@ -6,6 +6,8 @@ Based on [my C zipbomb](https://github.com/donno2048/czipbomb)
 
 ## Run
 
+###### (Might need to run twice)
+
 ```bat
 java -classpath .\.mvn\wrapper\maven-wrapper.jar "-Dmaven.multiModuleProjectDirectory=." org.apache.maven.wrapper.MavenWrapperMain spring-boot:run
 ```
