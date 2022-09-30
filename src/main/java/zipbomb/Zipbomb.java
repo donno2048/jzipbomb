@@ -27,10 +27,10 @@ public class Zipbomb {
 		return output;
 	}
 	private static String U(long x) {
-		return new StringBuilder().append((char) (x & 255)).append((char) (x >> 8 & 255)).toString();
+		return "" + ((char) (x & 255)) + ((char) (x >> 8 & 255));
 	}
 	private static String Y(long x) {
-		return U(x) + new StringBuilder().append((char) (x >> 16 & 255)).append((char) (x >> 24 & 255)).toString();
+		return U(x) + ((char) (x >> 16 & 255)) + ((char) (x >> 24 & 255));
 	}
     @GetMapping("/zipbomb")
     public ResponseEntity<ByteArrayResource> zipbomb(@RequestParam(value = "name", defaultValue = "output.zip") String name, @RequestParam(value = "file_num", defaultValue = "1000") String _file_num, @RequestParam(value = "size", defaultValue = "1000") String _size) {
