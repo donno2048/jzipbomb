@@ -2,21 +2,14 @@
 
 A zipbomb in Java on the web.
 
-Based on [my C zipbomb](https://github.com/donno2048/czipbomb)
+Based on [my C zipbomb](https://github.com/donno2048/czipbomb).
 
-## Install requirements
-
-```sh
-sudo apt update
-sudo apt install default-jdk maven -y
-```
+Requires Java and Maven.
 
 ## Run
 
-###### (Might need to run twice)
-
-```sh
-java -classpath ./.mvn/wrapper/maven-wrapper.jar "-Dmaven.multiModuleProjectDirectory=." org.apache.maven.wrapper.MavenWrapperMain spring-boot:run
+```bat
+mvn compile spring-boot:run
 ```
 
 ## Use
